@@ -57,10 +57,8 @@ function moviesAverageByCategory(array, genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-    let result = Array.from(array); //cloning the original array with ES6 spreading
-    //these will get the arrayItem.duration: "2h 34min"
-    let minutes = '';
-    minutes = result.map(item => {
+    let result = [...array]; //cloning the original array with ES6 spreading
+    let minutes = result.map(item => {
         item.duration = transformToMinutes(item.duration);
         console.log(item.duration + ' [type]: ' + typeof item.duration)
         return item;
@@ -72,9 +70,8 @@ function hoursToMinutes(array) {
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(array, year) {
     let result = array.filter(item => { return item.year == year });
-    let best = result.reduce((a, b) => a.score > b.score ? a : b);
-    result.unshift(best);
-    return result;
+    let best = result.sort((a, b) => a.score > b.score ? -1 : 1).splice(0, 1);
+    return best;
 }
 
 
