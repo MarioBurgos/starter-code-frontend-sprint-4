@@ -20,7 +20,7 @@ function moviesAverageOfDirector(array, director) {
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
     let result = [];
-    let movies = Array.from(array); // cloning array
+    let movies = [...array]; // cloning array
     movies = movies.sort((a, b) => { // sorting alphabetically
         return a.title > b.title ? 1 : -1;
     });
@@ -32,7 +32,7 @@ function orderAlphabetically(array) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-    let result = Array.from(array); //cloning array
+    let result = [...array]; //cloning array
     result = result.sort((a, b) => { // sort by year asc
         return a.year > b.year ? 1 : -1;
     });
@@ -57,11 +57,16 @@ function moviesAverageByCategory(array, genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-    let result = Array.from(array);
+    let result = array.slice();
     let minutes = result.map(item => {
         item.duration = transformToMinutes(item.duration);
-        console.log(item.duration + ' [type]: ' + typeof item.duration)
+        console.log(item.score + ' [type]: ' + typeof item.duration)
         return item;
+    });
+    console.log(array);
+    console.log(minutes);
+    minutes.sort((a, b) => { // sort by year asc
+        return a.year > b.year ? 1 : -1;
     });
     return minutes;
 }
@@ -109,8 +114,6 @@ function moviesAverage(array) {
 function transformToMinutes(value) {
     let valueAsArray = Array.from(value);
     let minutes = 0;
-    let hh = '';
-    let mm = '';
 
     if (valueAsArray.includes(' ')) {
         split = value.split(' ');
